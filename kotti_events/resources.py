@@ -1,4 +1,3 @@
-from sqlalchemy import Table
 from sqlalchemy import Column
 from sqlalchemy import ForeignKey
 from sqlalchemy import String
@@ -6,8 +5,6 @@ from sqlalchemy import Text
 from sqlalchemy import Time
 from sqlalchemy import Date
 from sqlalchemy import Integer
-from sqlalchemy.orm import mapper
-from kotti import metadata
 from kotti.resources import Content
 from kotti.resources import File
 from pyramid.i18n import TranslationStringFactory
@@ -71,6 +68,8 @@ class Event(Content):
         self.end_time = end_time
 
 class EventPicture(File):
+    __tablename__ = 'event_pictures'
+
     id = Column(Integer, ForeignKey('files.id'), primary_key=True)
 
     type_info = File.type_info.copy(
